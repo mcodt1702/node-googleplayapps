@@ -21,9 +21,9 @@ it("should return an array", () => {
 it("should ask for the righ sort type", () => {
   return supertest(app)
     .get("/apps")
-    .query({ genre: "afadsfadf" })
+    .query({ genre: "Cassaasasl", sort: "app" })
     .expect(
-      200,
-      "Genre should be one of the following 'Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card'"
+      400,
+      "Genre should be one of the following  'Action', 'Puzzle', 'Strategy', 'Casual', 'Arcade', 'Card' "
     );
 });
