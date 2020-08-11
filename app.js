@@ -4,8 +4,12 @@ const morgan = require("morgan");
 app.use(morgan("common"));
 const applist = require("./playapps");
 
+app.get("/", (req, res) => {
+  res.send("Hello Express!");
+});
+
 app.get("/apps", (req, res) => {
-  const { sort = "", genre } = req.query;
+  const { sort = "", genre = "" } = req.query;
 
   if (sort) {
     if (!["rating", "app"].includes(sort)) {
@@ -13,10 +17,9 @@ app.get("/apps", (req, res) => {
     }
   }
 
-  // if ([genre === ""]) {
-  //   return;
-  //   res.status(400).send("please");
-  // }
+  if (genre === "") {
+    return res.status(400).send("please type in a genre");
+  }
 
   if (genre) {
     if (
